@@ -10,7 +10,7 @@ const int EchoPinC = 7;
 int DistanceA_mm;
 int DistanceB_mm;
 int DistanceC_mm;
-int Division; 
+int Diferencia; 
 const int ledA = 13;
 const int ledR = 12;
 const int ledV = 11;
@@ -77,36 +77,51 @@ void loop() {
   outC = map(DistanceC_mm, 0, 1023, 0, 255);
   analogWrite(ledV, outC);
 
-  Division = DistanceB_mm - DistanceC_mm;
+  Diferencia = DistanceB_mm - DistanceC_mm;
 
-  if (Division > 0) {
+  if (Diferencia > 0) {
       // enderezar motor 
       analogWrite(kMotorLP, 25); 
       analogWrite(kMotorLN, 0); 
-      analogWrite(kMotorRP, 80); 
+      analogWrite(kMotorRP, 100); 
       analogWrite(kMotorRN, 0);
       Serial.print("caso_1 = ");
-      Serial.println(Division, DEC);
+      Serial.println(Diferencia, DEC);
+//      delay(1000);
    }
 
-  if (Division < 0) {
+  if (Diferencia < 0) {
       // enderezar motor 
-      analogWrite(kMotorLP, 70); 
+      analogWrite(kMotorLP, 80); 
       analogWrite(kMotorLN, 0); 
       analogWrite(kMotorRP, 25); 
       analogWrite(kMotorRN, 0);
       Serial.print("caso_2 = ");
-      Serial.println(Division, DEC);
-   }
+      Serial.println(Diferencia, DEC);
+ //     delay(1000);
+  }
 
+  if (DistanceB_mm > 80) {
+     // enderezar motor 
+        analogWrite(kMotorLP, 50); 
+        analogWrite(kMotorLN, 0); 
+        analogWrite(kMotorRP, 35); 
+        analogWrite(kMotorRN, 0);
+        Serial.print("caso_3 = ");
+        Serial.println(DistanceB_mm, DEC);
+//        delay(1000);
+  }
+ 
   if (DistanceA_mm < 85 && DistanceB_mm < 100 && DistanceC_mm < 100) {
-    
     while(DistanceA_mm<85){ 
       // gira a la derecha 
       analogWrite(kMotorLP, 20); 
       analogWrite(kMotorLN, 60); 
       analogWrite(kMotorRP, 60); 
       analogWrite(kMotorRN, 20);
+      Serial.print("ESQUINA = ");
+      Serial.println(DistanceA_mm, DEC);
+//      delay(1000);
       DistanceA_mm = readSensor(TriggerPinA, EchoPinA);
       DistanceB_mm = readSensor(TriggerPinB, EchoPinB);
       DistanceC_mm = readSensor(TriggerPinC, EchoPinC);
@@ -114,20 +129,22 @@ void loop() {
     delay(100);
   }
 
-  if (DistanceA_mm < 75) {
-    
+/*  if (DistanceA_mm < 75) {
     while(DistanceA_mm<75){ 
       // gira a la derecha 
       analogWrite(kMotorLP, 20); 
       analogWrite(kMotorLN, 60); 
       analogWrite(kMotorRP, 60); 
       analogWrite(kMotorRN, 20);
+      Serial.print("ADELANTE = ");
+      Serial.println(DistanceA_mm, DEC);
+      delay(1000);
       DistanceA_mm = readSensor(TriggerPinA, EchoPinA);
       DistanceB_mm = readSensor(TriggerPinB, EchoPinB);
       DistanceC_mm = readSensor(TriggerPinC, EchoPinC);
     }
-    delay(100);
-  }
-
+      delay(100);
+  }  
+*/
   delay(20);
 }
