@@ -17,7 +17,7 @@ void loop(){
 
   analogWrite(kMotorLP, 42); 
   analogWrite(kMotorLN, 0); 
-  analogWrite(kMotorRP, 42); 
+  analogWrite(kMotorRP, 41); 
   analogWrite(kMotorRN, 0);
 
 delay(1000);

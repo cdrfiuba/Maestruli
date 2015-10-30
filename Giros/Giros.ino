@@ -5,7 +5,7 @@ int kMotorLN = 10;
 int kMotorRP = 5;
 int kMotorRN = 6;
 
-const int Vel_MotorR_adelante = 42;
+const int Vel_MotorR_adelante = 41;
 const int Vel_MotorL_adelante = 42;
 
 void setup() {
@@ -19,21 +19,21 @@ void setup() {
 }
 
 void loop() {
-/*  
+  
     // gira a la derecha 
     analogWrite(kMotorLP, Vel_MotorL_adelante); 
     analogWrite(kMotorLN, 0); 
     analogWrite(kMotorRP, 0); 
     analogWrite(kMotorRN, Vel_MotorR_adelante);
     delay (500);
-*/
+/*
     // gira a la izquierda 
     analogWrite(kMotorLP, 0); 
     analogWrite(kMotorLN, Vel_MotorL_adelante); 
     analogWrite(kMotorRP, Vel_MotorR_adelante); 
     analogWrite(kMotorRN, 0);
     delay(525);
-
+*/
     //Stop
     digitalWrite(kMotorLP, LOW);
     digitalWrite(kMotorLN, LOW);
